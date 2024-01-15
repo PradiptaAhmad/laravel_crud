@@ -20,7 +20,7 @@
                     <td>{{ $student['Nama'] }}</td> 
                     <td>{{ $student['Alamat'] }}</td>
                     <td>
-                        <a href="#" type="button" class="btn btn-primary">Detail</a>
+                        <a href="{{ route('students.show', ['student' => $student->id]) }}" type="button" class="btn btn-primary">Detail</a>
                         <a href={{ route('students.edit', ['student'=> $student->id]) }} type="button" class="btn btn-warning">Edit</a>
                         <!-- Modify the href attribute to use the student ID for the delete route -->
                         <a href="{{ route('students.delete', ['student' => $student->id]) }}" 
@@ -45,10 +45,10 @@
             var result = confirm("Are you sure you want to delete this student?");
             if (result) {
                 // User clicked "OK," proceed with the delete action
-                event.preventDefault(); 
+                 event.preventDefault();
                 document.getElementById('delete-form-' + studentId).submit();
             } else {
-
+                 event.preventDefault();
             }
         }
     </script>

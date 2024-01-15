@@ -71,4 +71,11 @@ class StudentController extends Controller
             ]);
         return redirect('/students')->with('status', 'Data Siswa Berhasil Diubah!');
     }
+    public function show(Student $student)
+    {
+        return view('students.detail', [
+            'title' => 'Detail Siswa',
+            'student' => $student,
+        ]);
+    }
 }

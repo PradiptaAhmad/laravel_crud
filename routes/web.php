@@ -49,3 +49,4 @@ Route::post('/students/store', [StudentController::class, 'store'])->name('stude
 Route::delete('/students/{student}', [StudentController::class, 'delete'])->name('students.delete');
 Route::get('/students/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
 Route::patch('/students/{student}', [StudentController::class, 'update'])->name('students.update');
+Route::get('/students/{student}', [StudentController::class, 'show'])->name('students.show');
