@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ClassesControlle;
+use App\Http\Controllers\ClassesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 
@@ -44,9 +46,20 @@ Route::get('/', function () {
 // Route::get('/add', function () {
 //     return view('students.add');
 // });
-Route::get('/students/add', [StudentController::class, 'add'])->name('students.add'); // Menambahkan nama rute 'students.store'
-Route::post('/students/store', [StudentController::class, 'store'])->name('students.store');
-Route::delete('/students/{student}', [StudentController::class, 'delete'])->name('students.delete');
-Route::get('/students/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
-Route::patch('/students/{student}', [StudentController::class, 'update'])->name('students.update');
-Route::get('/students/{student}', [StudentController::class, 'show'])->name('students.show');
+Route::group(['prefix' => '/students'], function () {
+    Route::get('/add', [StudentController::class, 'add'])->name('students.add');
+    Route::post('/store', [StudentController::class, 'store'])->name('students.store');
+    Route::delete('/{student}', [StudentController::class, 'delete'])->name('students.delete');
+    Route::get('/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
+    Route::patch('/{student}', [StudentController::class, 'update'])->name('students.update');
+    Route::get('/{student}', [StudentController::class, 'show'])->name('students.show');
+});
+
+Route::group(['prefix' => '/classes'], function () {
+    // Route::get('/', [ClassesController::class, 'index'])->name('classes.index');
+    Route::get('/add', [ClassesController::class, 'add'])->name('classes.add');
+    Route::post('/add/store', [ClassesController::class, 'added'])->name('classes.add.store');
+    // Route::post('/store', [ClassesController::class, 'store'])->name('classes.store');
+    // Route::delete('/{class}', [ClassesController::class, 'delete'])->name('classes.delete');
+    // Route::get('/{class}/edit', [ClassesController::class, 'edit'])->name('classes.edit');
+});

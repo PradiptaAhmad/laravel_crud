@@ -10,15 +10,15 @@
                     <div class="card-header">Tambah Data Siswa</div>
 
                     <div class="card-body">
-                        @if(session('success'))
+                        @if (session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
                             </div>
                         @endif
-   
+
                         <form method="post" action="{{ route('students.store') }}">
                             @csrf
-                             <div class="form-group">
+                            <div class="form-group">
                                 <label for="name">Nama</label>
                                 <input type="text" class="form-control" id="Nama" name="Nama" required>
                             </div>
@@ -28,9 +28,15 @@
                                 <input type="text" class="form-control" id="NIS" name="NIS" required>
                             </div>
 
-                            <div class="form-group">
-                                <label for="class">Kelas</label>
-                                <input type="text" class="form-control" id="Kelas" name="Kelas" required>
+                            <div class="mb-3">
+                                <label for="class" class="form-label">Kelas</label>
+                                <select class="form-select" name="KelasId" id="KelasId" required>
+                                    <option value="" selected disabled>Pilih</option>
+                                    @foreach ($classes as $class)
+                                        <option value="{{ $class->id }}">{{ $class->Nama_Kelas }}</option>
+                                    @endforeach
+                                </select>
+                                
                             </div>
 
                             <div class="form-group">

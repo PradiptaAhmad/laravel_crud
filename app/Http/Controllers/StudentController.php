@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classes;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -30,8 +31,8 @@ class StudentController extends Controller
         $request->validate([
             'Nama' => 'required',
             'NIS' => 'required',
-            'Kelas' => 'required',
-            'Alamat' => 'required'
+            'KelasId' => 'required',
+            'Alamat' => 'required',
         ]);
 
         Student::create($request->all());
@@ -40,7 +41,8 @@ class StudentController extends Controller
     public function add()
     {
         return view('students.add', [
-            "title" => "Tambah Data Siswa"
+            "title" => "Tambah Data Siswa",
+            "classes" => Classes::all()
         ]);
     }
     public function edit(Student $student)
@@ -48,6 +50,7 @@ class StudentController extends Controller
         return view('students.edit', [
             'title' => 'Edit Data Siswa',
             'student' => $student,
+            "classes" => Classes::all()
         ]);
     }
 
@@ -58,7 +61,7 @@ class StudentController extends Controller
         $request->validate([
             'Nama' => 'required',
             'NIS' => 'required',
-            'Kelas' => 'required',
+            'KelasId' => 'required',
             'Alamat' => 'required'
         ]);
 
@@ -66,7 +69,7 @@ class StudentController extends Controller
             ->update([
                 'Nama' => $request->Nama,
                 'NIS' => $request->NIS,
-                'Kelas' => $request->Kelas,
+            'KelasId' => $request->KelasId,
                 'Alamat' => $request->Alamat
             ]);
         return redirect('/students')->with('status', 'Data Siswa Berhasil Diubah!');
