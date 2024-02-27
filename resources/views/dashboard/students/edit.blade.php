@@ -1,6 +1,6 @@
 <!-- resources/views/students/create.blade.php -->
 
-@extends('layout.main')
+@extends('layout.dashboard')
 
 @section('container')
     <div class="container">
@@ -16,7 +16,7 @@
                             </div>
                         @endif
 
-                        <form method="post" action="{{ route('students.store') }}">
+                        <form method="post" action="{{ route('dashboard.students.store') }}">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Nama</label>
