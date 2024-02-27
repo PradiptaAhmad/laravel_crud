@@ -12,7 +12,11 @@ class ClassesController extends Controller
      */
     public function index()
     {
-        //
+        $classesItem = Classes::paginate(5);
+        return view('kelas.kelas', [
+            "title" => "Daftar Kelas",
+            "classes" => $classesItem
+        ]);
     }
 
     /**

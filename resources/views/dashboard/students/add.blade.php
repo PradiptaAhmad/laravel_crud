@@ -1,13 +1,13 @@
-<!-- resources/views/students/edit.blade.php -->
+<!-- resources/views/students/create.blade.php -->
 
-@extends('layout.main')
+@extends('layout.dashboard')
 
 @section('container')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Edit Data Siswa</div>
+                    <div class="card-header">Tambah Data Siswa</div>
 
                     <div class="card-body">
                         @if (session('success'))
@@ -16,39 +16,36 @@
                             </div>
                         @endif
 
-                        <form method="post" action="{{ route('students.update', ['student' => $student->id]) }}">
+                        <form method="post" action="{{ route('dashboard.students.store') }}">
                             @csrf
-                            @method('PATCH') <!-- Use PUT method for updates -->
-
                             <div class="form-group">
-                                <label for="Nama">Nama</label>
-                                <input type="text" class="form-control" id="Nama" name="Nama"
-                                    value="{{ $student->Nama }}" required>
+                                <label for="name">Nama</label>
+                                <input type="text" class="form-control" id="Nama" name="Nama" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="NIS">NIS</label>
-                                <input type="text" class="form-control" id="NIS" name="NIS"
-                                    value="{{ $student->NIS }}" required>
+                                <label for="nis">NIS</label>
+                                <input type="text" class="form-control" id="NIS" name="NIS" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="class" class="form-label">Kelas</label>
                                 <select class="form-select" name="KelasId" id="KelasId" required>
-                                    <option value="{{ $student->KelasId }}">{{$student->class->Nama_Kelas}}</option>
+                                    <option value="" selected disabled>Pilih</option>
                                     @foreach ($classes as $class)
                                         <option value="{{ $class->id }}">{{ $class->Nama_Kelas }}</option>
                                     @endforeach
                                 </select>
-
+                                
                             </div>
 
                             <div class="form-group">
-                                <label for="Alamat">Alamat</label>
-                                <textarea class="form-control" id="Alamat" name="Alamat" rows="3" required>{{ $student->Alamat }}</textarea>
+                                <label for="address">Alamat</label>
+                                <!-- Set a default value for the textarea using the value attribute -->
+                                <textarea class="form-control" id="Alamat" name="Alamat" rows="3" required></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-primary mt-4">Update</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>
